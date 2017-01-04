@@ -28,14 +28,14 @@ namespace ORB_SLAM2
 
 Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath):
     mpSystem(pSystem), mpFrameDrawer(pFrameDrawer),mpMapDrawer(pMapDrawer), mpTracker(pTracking),
-    mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false)
+    mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false),fpscounter(0)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
 
-    float fps = fSettings["Camera.fps"];
+    fps = fSettings["Camera.fps"];
     if(fps<1)
         fps=30;
-    mT = 1e3/fps;
+    mT = 1e3/(float)fps;
 
     mImageWidth = fSettings["Camera.width"];
     mImageHeight = fSettings["Camera.height"];
@@ -44,7 +44,7 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
         mImageWidth = 640;
         mImageHeight = 480;
     }
-
+    mMapFile = "../../ORB_SLAM_MAP";
     mViewpointX = fSettings["Viewer.ViewpointX"];
     mViewpointY = fSettings["Viewer.ViewpointY"];
     mViewpointZ = fSettings["Viewer.ViewpointZ"];
@@ -136,7 +136,12 @@ void Viewer::Run()
 
         cv::Mat im = mpFrameDrawer->DrawFrame();
         cv::imshow("ORB-SLAM2: Current Frame",im);
-        cv::waitKey(mT);
+
+        cv::waitKey(mT);        
+        if (fpscounter%fps==1)
+            mpMapDrawer->SaveMapPoints(mMapFile+std::to_string(fpscounter)+".ply");
+        fpscounter++;
+
 
         if(menuReset)
         {

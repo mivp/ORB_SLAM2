@@ -44,7 +44,8 @@ public:
     void SetCurrentCameraPose(const cv::Mat &Tcw);
     void SetReferenceKeyFrame(KeyFrame *pKF);
     void GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M);
-
+    void SaveMapAsPly(std::string filename, std::vector<float> verts, std::vector<uint8_t> colors);
+    void SaveMapPoints(std::string filename);
 private:
 
     float mKeyFrameSize;

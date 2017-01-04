@@ -1,0 +1,5 @@
+rm /media/ah/Data/MIVP/*.ply
+rm -rf /home/ah/dev/git/droneslam/EuReC_MH05/*
+cd /home/ah/dev/ORB_SLAM2
+primusrun ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /media/ah/Data/MIVP/data_big_handreas/ORB_SLAM/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/MH05.txt 
+

@@ -65,6 +65,9 @@ private:
     MapDrawer* mpMapDrawer;
     Tracking* mpTracker;
 
+    std::string mMapFile;
+    int fpscounter;
+    int fps;
     // 1/fps in ms
     double mT;
     float mImageWidth, mImageHeight;

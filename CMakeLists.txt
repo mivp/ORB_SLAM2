@@ -61,6 +61,7 @@ src/KeyFrameDatabase.cc
 src/Sim3Solver.cc
 src/Initializer.cc
 src/Viewer.cc
+src/tinyply.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -104,3 +105,6 @@ add_executable(mono_euroc
 Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
 
+add_executable(mono_cam
+Examples/Monocular/mono_cam.cc)
+target_link_libraries(mono_cam ${PROJECT_NAME})
