@@ -1,4 +1,6 @@
+echo "head1 specific opencv export CMAKE_MODULE_PATH=/cave/dev/openCV/opencv-2.4.13/build/"
 echo "Configuring and building Thirdparty/DBoW2 ..."
+export CMAKE_MODULE_PATH=/cave/dev/openCV/opencv-2.4.13/build/
 
 cd Thirdparty/DBoW2
 mkdir build
