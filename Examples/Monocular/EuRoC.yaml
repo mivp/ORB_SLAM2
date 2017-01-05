@@ -56,10 +56,10 @@ Viewer.ViewpointZ: -1.8
 Viewer.ViewpointF: 500
 
 #  std::string cmd="PotreeConverter --source /media/ah/Data/MIVP/home_dev/ORB_SLAM2/"+ filename +" -o /home/ah/dev/git/droneslam/EuReC_MH05 --overwrite -p index &";
-Potree.sourcepath: "/media/ah/Data/MIVP/home_dev/ORB_SLAM2/"
-Potree.outputpath: "/home/ah/dev/git/droneslam/EuReC_MH05"
-Potree.args: " --overwrite -p index "
-Potree.app: "PotreeConverter"
+#Potree.sourcepath: "/media/ah/Data/MIVP/home_dev/ORB_SLAM2/"
+#Potree.outputpath: "/home/ah/dev/git/droneslam/EuReC_MH05"
+#Potree.args: " --overwrite -p index "
+#Potree.app: "PotreeConverter"
 #Potree.dataroot: "PotreeConverter --source /media/ah/Data/MIVP/"+ filename +" -o /home/ah/dev/git/droneslam/EuReC_MH05 --overwrite -p index &"
-Potree.mapdump: "../../ORB_SLAM_MAP"
+Potree.mapdump: "/data/big/handreas/droneslam/temp/ORB_SLAM_MAP"
 Potree.convertercall: "/data/big/handreas/droneslam/PotreeConvert.sh"

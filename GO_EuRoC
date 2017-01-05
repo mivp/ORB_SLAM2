@@ -1,5 +1,16 @@
-rm /media/ah/Data/MIVP/*.ply
-rm -rf /home/ah/dev/git/droneslam/EuReC_MH05/*
-cd /home/ah/dev/ORB_SLAM2
-primusrun ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /media/ah/Data/MIVP/data_big_handreas/ORB_SLAM/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/MH05.txt 
-
+#!/bin/bash
+if [ "$HOSTNAME" = Francium ]; then
+  rm /media/ah/Data/MIVP/*.ply
+  rm -rf /home/ah/dev/git/droneslam/EuReC_MH05/*
+  cd /home/ah/dev/ORB_SLAM2
+  primusrun ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /media/ah/Data/MIVP/data_big_handreas/ORB_SLAM/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/MH05.txt 
+elif [ "$HOSTNAME" = head1 ]; then
+  export DISPLAY=:0
+  rm /data/big/handreas/droneslam/temp/*.ply
+  rm -rf /data/big/handreas/droneslam/temp/EuReC_MH05/
+  cd /home/handreas/dev/ORB_SLAM2
+  ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /data/big/handreas/droneslam/data/EuReC_MH05/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/MH05.txt
+  echo "TODO start potree"
+else
+    printf '%s\n' "uh-oh, not on a known host"
+fi
