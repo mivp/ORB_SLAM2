@@ -47,7 +47,7 @@ public:
     void SaveMapAsPly(std::string filename, std::vector<float> verts, std::vector<uint8_t> colors);
     void SaveMapPoints(std::string filename);
 private:
-
+    std::string PotreeConverterCall;
     float mKeyFrameSize;
     float mKeyFrameLineWidth;
     float mGraphLineWidth;

@@ -38,6 +38,8 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath):mpMap(pMap)
     mPointSize = fSettings["Viewer.PointSize"];
     mCameraSize = fSettings["Viewer.CameraSize"];
     mCameraLineWidth = fSettings["Viewer.CameraLineWidth"];
+    cv::FileNode poccmd = fSettings["Potree.convertercall"];
+    PotreeConverterCall = (std::string)poccmd;
 
 }
 
@@ -78,7 +80,8 @@ void MapDrawer::SaveMapPoints(std::string filename) {
         colors.push_back(0);
     }
     SaveMapAsPly(filename,verts,colors);
-    std::string cmd="PotreeConverter --source /media/ah/Data/MIVP/home_dev/ORB_SLAM2/"+ filename +" -o /home/ah/dev/git/droneslam/EuReC_MH05 --overwrite -p index &";
+    //std::string cmd="PotreeConverter --source /media/ah/Data/MIVP/home_dev/ORB_SLAM2/"+ filename +" -o /home/ah/dev/git/droneslam/EuReC_MH05 --overwrite -p index &";
+    std::string cmd = PotreeConverterCall+" "+ filename;
     std::system(cmd.c_str());
 }
 //reusing code from https://github.com/ddiakopoulos/tinyply

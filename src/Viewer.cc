@@ -44,7 +44,9 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
         mImageWidth = 640;
         mImageHeight = 480;
     }
+    cv::FileNode tmp = fSettings["Potree.mapdump"];
     mMapFile = "../../ORB_SLAM_MAP";
+    mMapFile = (std::string)tmp;
     mViewpointX = fSettings["Viewer.ViewpointX"];
     mViewpointY = fSettings["Viewer.ViewpointY"];
     mViewpointZ = fSettings["Viewer.ViewpointZ"];
