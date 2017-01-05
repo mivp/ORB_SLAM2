@@ -18,6 +18,7 @@
 #include <memory>
 #include <functional>
 #include <cstring>
+#include <stdexcept>
 
 namespace tinyply
 {
@@ -315,7 +316,7 @@ namespace tinyply
                 template<typename T>
                 void add_properties_to_element(const std::string & elementKey, const std::vector<std::string> & propertyKeys, std::vector<T> & source, const int listCount = 1, const PlyProperty::Type listType = PlyProperty::Type::INVALID)
                 {
-                        auto cursor = std::make_shared<DataCursor>();
+                        std::shared_ptr<DataCursor> cursor = std::make_shared<DataCursor>();
                         cursor->offset = 0;
                         cursor->vector = &source;
                         cursor->data = reinterpret_cast<uint8_t *>(source.data());
@@ -326,7 +327,12 @@ namespace tinyply
                                 {
                                         PlyProperty::Type t = property_type_for_type(source);
                                         PlyProperty newProp = (listType == PlyProperty::Type::INVALID) ? PlyProperty(t, key) : PlyProperty(listType, t, key, listCount);
-                                        userDataTable.insert(std::pair<std::string, std::shared_ptr<DataCursor>>(make_key(e.name, key), cursor));
+                                        //userDataTable[make_key(e.name, key)]=cursor;
+					//userDataTable.insert(make_key(e.name, key),cursor);
+					std::string skey = make_key(e.name, key);
+					std::pair< std::string, std::shared_ptr<DataCursor > >  pkey(skey,cursor);
+					//this->userDataTable[skey]=cursor;
+					this->userDataTable.insert(std::pair<std::string, std::shared_ptr<DataCursor> >(make_key(e.name, key), cursor));
                                         e.properties.push_back(newProp);
                                 }
                         };
@@ -370,8 +376,7 @@ namespace tinyply
 
                 bool isBinary = false;
                 bool isBigEndian = false;
-
-                std::map<std::string, std::shared_ptr<DataCursor>> userDataTable;
+                std::map< std::string, std::shared_ptr< DataCursor > > userDataTable;
 
                 std::vector<PlyElement> elements;
                 std::vector<std::string> requestedElements;
