@@ -62,4 +62,4 @@ Viewer.ViewpointF: 500
 #Potree.app: "PotreeConverter"
 #Potree.dataroot: "PotreeConverter --source /media/ah/Data/MIVP/"+ filename +" -o /home/ah/dev/git/droneslam/EuReC_MH05 --overwrite -p index &"
 Potree.mapdump: "/data/big/handreas/droneslam/temp/ORB_SLAM_MAP"
-Potree.convertercall: "/data/big/handreas/droneslam/PotreeConvert.sh"
+Potree.convertercall: "/data/big/handreas/droneslam/PotreeConvert.py"
