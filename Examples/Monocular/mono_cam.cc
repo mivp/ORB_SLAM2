@@ -29,36 +29,6 @@
 #include<System.h>
 
 using namespace std;
-
-
-/*
-cv::Mat System::TrackMonoCamera(const double & timestamp) {
-//#include "opencv2/opencv.hpp"
-//using namespace cv;
-
-    cv::VideoCapture cap;
-    cv::Mat frame;
-    // open the default camera, use something different from 0 otherwise;
-    // Check VideoCapture documentation.
-    if(!cap.open(0))
-    {
-        cerr << "Cannot open Mono Camera." << endl;
-        exit(-1);
-    }
-    for(;;)
-    {
-
-          cap >> frame;
-          if( frame.empty() ) break; // end of video stream
-          //imshow("this is you, smile! :)", frame);
-          //if( waitKey(1) == 27 ) break; // stop capturing by pressing ESC
-    }
-    // the camera will be closed automatically upon exit
-    // cap.close();
-    return TrackMonocular(frame,timestamp);
-}
-*/
-
 using namespace std::chrono;
 
 
@@ -72,6 +42,7 @@ int main(int argc, char **argv)
     cv::VideoCapture cap;
     // open the default camera, use something different from 0 otherwise;
     // Check VideoCapture documentation.
+    //if(!cap.open("/data/big/handreas/test.mov"))
     if(!cap.open(0))
     {
         cerr << "Cannot open Mono Camera." << endl;
@@ -148,7 +119,7 @@ int main(int argc, char **argv)
         if(ttrack<T)
             usleep((T-ttrack)*1e6);
             */
-        cout << "waiting 1" << endl;
+        //cout << "waiting 1" << endl;
         usleep(1);
     }
 
@@ -171,32 +142,3 @@ int main(int argc, char **argv)
     */
     return 0;
 }
-
-
-/*
-cv::Mat System::TrackMonoCamera(const double & timestamp) {
-//#include "opencv2/opencv.hpp"
-//using namespace cv;
-
-    cv::VideoCapture cap;
-    cv::Mat frame;
-    // open the default camera, use something different from 0 otherwise;
-    // Check VideoCapture documentation.
-    if(!cap.open(0))
-    {
-        cerr << "Cannot open Mono Camera." << endl;
-        exit(-1);
-    }
-    for(;;)
-    {
-
-          cap >> frame;
-          if( frame.empty() ) break; // end of video stream
-          //imshow("this is you, smile! :)", frame);
-          //if( waitKey(1) == 27 ) break; // stop capturing by pressing ESC
-    }
-    // the camera will be closed automatically upon exit
-    // cap.close();
-    return TrackMonocular(frame,timestamp);
-}
-*/
