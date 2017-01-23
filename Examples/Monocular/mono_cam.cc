@@ -42,8 +42,10 @@ int main(int argc, char **argv)
     cv::VideoCapture cap;
     // open the default camera, use something different from 0 otherwise;
     // Check VideoCapture documentation.
-    //if(!cap.open("/data/big/handreas/test.mov"))
-    if(!cap.open(0))
+    string source("/data/big/handreas/test.mov");    cout << " grabbing images from "<< source << endl;
+    bool re=cap.open(0);  cout << " grabbing images from camera 0" << endl;
+    //bool re=cap.open(source);
+    if (!re)
     {
         cerr << "Cannot open Mono Camera." << endl;
         exit(-1);

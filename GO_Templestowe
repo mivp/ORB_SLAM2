@@ -1,0 +1,18 @@
+#!/bin/bash
+module load omegalib/13.1
+rm /data/big/handreas/droneslam/temp/*.ply
+if [ "$HOSTNAME" = Francium ]; then
+  rm -rf /home/ah/dev/git/droneslam/EuReC_MH05/*
+  cd /home/ah/dev/git/ORB_SLAM2
+  #primusrun ./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /media/ah/Data/MIVP/data_big_handreas/ORB_SLAM/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/MH05.txt 
+  primusrun ./Examples/Monocular/mono_vid Vocabulary/ORBvoc.txt Examples/Monocular/Templestowe.yaml /data/big/handreas/test.mov 
+elif [ "$HOSTNAME" = head1 ]; then
+  export DISPLAY=:0
+  rm -rf /data/big/handreas/droneslam/temp/EuReC_MH05/
+  cd /home/handreas/dev/ORB_SLAM2
+  #./Examples/Monocular/mono_euroc Vocabulary/ORBvoc.txt Examples/Monocular/EuRoC.yaml /data/big/handreas/droneslam/data/EuReC_MH05/mav0/cam0/data Examples/Monocular/EuRoC_TimeStamps/MH05.txt
+  ./Examples/Monocular/mono_vid Vocabulary/ORBvoc.txt Examples/Monocular/Templestowe.yaml /data/big/Projects/P105.0-Barnes/00108000-H264-best.mov
+  echo "TODO start potree"
+else
+    printf '%s\n' "uh-oh, not on a known host"
+fi

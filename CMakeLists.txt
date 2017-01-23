@@ -108,3 +108,7 @@ target_link_libraries(mono_euroc ${PROJECT_NAME} ${OpenCV_LIBS} )
 add_executable(mono_cam
 Examples/Monocular/mono_cam.cc)
 target_link_libraries(mono_cam ${PROJECT_NAME} ${OpenCV_LIBS} )
+
+add_executable(mono_vid
+Examples/Monocular/mono_vid.cc)
+target_link_libraries(mono_vid ${PROJECT_NAME} ${OpenCV_LIBS} )
