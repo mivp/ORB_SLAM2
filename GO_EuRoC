@@ -1,5 +1,5 @@
 #!/bin/bash
-module load omegalib/13.1
+module load omegalib/13
 rm /data/big/handreas/droneslam/temp/*.ply
 if [ "$HOSTNAME" = Francium ]; then
   rm -rf /home/ah/dev/git/droneslam/EuReC_MH05/*
